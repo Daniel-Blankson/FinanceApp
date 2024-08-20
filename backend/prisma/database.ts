@@ -10,25 +10,24 @@ const pool = new Pool({ connectionString });
 const adapter = new PrismaPg(pool);
 const prisma = new PrismaClient({ adapter });
 
-async function main() {
-  // Create a new user
-  const newUser = await prisma.user.create({
-    data: {
-      name: "Magda",
-      email: "magda@example.com"
-    }
-  });
-  console.log("Created new user:", newUser);
+export async function main(userName: string, userEmail: string) {
+  try {
+    // Create a new user
+    const newUser = await prisma.user.create({
+      data: {
+        name: userName,
+        email: userEmail
+      }
+    });
+    console.log("Created new user:", newUser);
 
-  // Fetch all users
-  const allUsers = await prisma.user.findMany();
-  console.log("All users:", allUsers);
-}
-
-main()
-  .catch((e) => {
-    throw e;
-  })
-  .finally(async () => {
+    // Fetch all users
+    const allUsers = await prisma.user.findMany();
+    console.log("All users:", allUsers);
+  } catch (error) {
+    console.error("Error occurred while interacting with the database:", error);
+  } finally {
     await prisma.$disconnect();
-  });
+    console.log("Prisma disconnected");
+  }
+}
