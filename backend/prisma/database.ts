@@ -1,3 +1,5 @@
+// Run this script using npx ts-node .\database.ts
+
 import { Pool } from 'pg'
 import { PrismaPg } from '@prisma/adapter-pg'
 import { PrismaClient } from '@prisma/client'
@@ -13,8 +15,8 @@ async function main() {
     // Create a new user
     const newUser = await prisma.user.create({
       data: {
-        name: 'Alice',
-        email: 'alice@example.com',
+        name: 'Blankson',
+        email: 'blankson@example.com',
       },
     });
     console.log('Created new user:', newUser);
