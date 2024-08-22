@@ -1,8 +1,8 @@
 import { useState } from "react";
 import reactLogo from "./assets/react.svg";
-import "./Index.css";
+import "./Dashboard.css";
 
-function Index() {
+export default function Dashboard() {
   const [count, setCount] = useState(0);
 
   return (
@@ -21,7 +21,7 @@ function Index() {
           count is {count}
         </button>
         <p>
-          Edit <code>src/Index.tsx</code> and save to test HMR
+          Edit <code>src/Dashboard.tsx</code> and save to test HMR
         </p>
       </div>
       <p className="read-the-docs">
@@ -31,4 +31,3 @@ function Index() {
   );
 }
 
-export default Index;

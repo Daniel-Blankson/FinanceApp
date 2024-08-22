@@ -1,9 +1,7 @@
-import { useState } from "react";
-import { ReactDOM } from "react";
 import Dropdown from "./Dropdown";
 import "./Form.css"
 
-function Form() {
+export default function Form() {
 
   const options = [
     { value: "bills", label: "Bills"},
@@ -44,4 +42,3 @@ function Form() {
     </form>
   );
 }
-export default Form;

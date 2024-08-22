@@ -4,7 +4,7 @@ import {
   createReactRouter,
   createRouteConfig,
 } from "@tanstack/react-router";
-import Index from "../../Index";
+import Dashboard from "../../Dashboard";
 import Form from "../Form/Form";
 
 const rootRoute = createRouteConfig({
@@ -13,7 +13,7 @@ const rootRoute = createRouteConfig({
 
 const indexRoute = rootRoute.createRoute({
   path: "/",
-  component: Index,
+  component: Dashboard,
 });
 
 const formRoute = rootRoute.createRoute({
@@ -25,10 +25,9 @@ const routeConfig = rootRoute.addChildren([indexRoute, formRoute]);
 
 const router = createReactRouter({ routeConfig });
 
-function App() {
+export default function App() {
   return <RouterProvider router={router} />;
 }
-export default App;
 
 declare module "@tanstack/react-router" {
   interface RegisterRouter {
