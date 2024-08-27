@@ -1,36 +1,43 @@
-import {
-  Outlet,
-  RouterProvider,
-  createReactRouter,
-  createRouteConfig,
-} from "@tanstack/react-router";
-import Dashboard from "../../Dashboard";
+import { RouterProvider, Route, RootRoute, Router, Outlet } from '@tanstack/react-router';
+import Dashboard from "../../pages/Dashboard";
 import Form from "../Form/Form";
 
-const rootRoute = createRouteConfig({
-  component: Outlet,
+// Define the root route
+const rootRoute = new RootRoute({
+  component: () => (
+    <div>
+      <Outlet />
+    </div>
+  ),
 });
 
-const indexRoute = rootRoute.createRoute({
+// Define the individual routes
+const indexRoute = new Route({
+  getParentRoute: () => rootRoute,
   path: "/",
   component: Dashboard,
 });
 
-const formRoute = rootRoute.createRoute({
+const formRoute = new Route({
+  getParentRoute: () => rootRoute,
   path: "/form",
   component: Form,
 });
 
-const routeConfig = rootRoute.addChildren([indexRoute, formRoute]);
+// Combine the routes into a route tree
+const routeTree = rootRoute.addChildren([indexRoute, formRoute]);
 
-const router = createReactRouter({ routeConfig });
+// Create the router instance
+const router = new Router({ routeTree });
 
+// Export the main App component
 export default function App() {
   return <RouterProvider router={router} />;
 }
 
+// TypeScript module augmentation to register the router for type safety
 declare module "@tanstack/react-router" {
-  interface RegisterRouter {
+  interface Register {
     router: typeof router;
   }
 }

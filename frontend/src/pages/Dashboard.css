@@ -1,0 +1,24 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    width: 100%;
+}
+
+.settings-icon {
+    background-size: cover;
+    margin-right: 60px;
+}
+
+.alarm-icon {
+    background-size: cover;
+    margin-left: 60px;
+}
+
+.home-text {
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center; 
+    flex-grow: 1;
+}
